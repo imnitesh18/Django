@@ -46,3 +46,22 @@ def info(request,month,year):
     return HttpResponse(month + " "+year)    
 
 
+def restuarant(request,category,subcategory):
+    if (category=='') and (subcategory==''):
+        return HttpResponse("Not found",status=404)
+    else:
+        return HttpResponse(f'The category is {category} and the subcategory is {subcategory}')
+    
+def about(request):
+    return render(request,'about.html')    
+
+def menus(request):
+    items={'type':'India'}
+    return render(request,'menu.html',items)
+
+def menu1(request):
+    items={'menuitems':[
+       {'name':'north indian thali','cost':50},
+       {'name':'south indian thali','cost':500}     
+       ]}
+    return render(request,'menu1.html',items)

@@ -12,4 +12,9 @@ urlpatterns =[
     re_path(r'^item/(?P<item_id>\d+)/$',views.items),
     re_path(r'^info/(?P<month>\d{2})/(?P<year>\d{4})/$',views.info),
     # re_path(r'^post/(?P<post>[\w-]+)/$', views.post),
+    
+    re_path(r'^restaurant/(?P<category>[\s\w$-%]*)/?(?P<subcategory>[\w]*)/?$',views.restuarant),
+    path('about/',views.about),
+    path('menus/',views.menus),
+    path('menu1/',views.menu1),
 ]
