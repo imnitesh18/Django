@@ -1,5 +1,6 @@
 from django.urls import path,re_path
 from . import views
+
 urlpatterns =[
     path('hello/',views.hello),
     path('home/',views.home),
@@ -17,4 +18,6 @@ urlpatterns =[
     path('about/',views.about),
     path('menus/',views.menus),
     path('menu1/',views.menu1),
+    path('restro/', views.restro),
+
 ]

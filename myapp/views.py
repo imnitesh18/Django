@@ -65,3 +65,16 @@ def menu1(request):
        {'name':'south indian thali','cost':500}     
        ]}
     return render(request,'menu1.html',items)
+
+def restro(request):
+    items = [
+        {'name': 'pizza', 'cost': 500},
+        {'name': 'Fries', 'cost': 'free'},
+        {'name': 'Momos', 'cost': 80},
+        {'name': 'Chutney', 'cost': 'free'},
+        {'name': 'pasta', 'cost': 70}
+    ]
+    
+    # free=[item for item in items if item['cost']=='free']
+    # return render(request, 'restro.html', {'free': free})
+    return render(request, 'restro.html', {'items': items})
