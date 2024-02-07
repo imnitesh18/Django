@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+</head>
+<body>
+    {% if item %}
+        <h1>{{ item.name }}</h1>
+        <p>Cost: {% if item.cost == 'free' %} Free {% else %} ${{ item.cost }} {% endif %}</p>
+    {% else %}
+        <p>Item not found</p>
+    {% endif %}
+</body>
+</html>

@@ -78,3 +78,20 @@ def restro(request):
     # free=[item for item in items if item['cost']=='free']
     # return render(request, 'restro.html', {'free': free})
     return render(request, 'restro.html', {'items': items})
+
+def restroo(request,item):
+     items = {'menuitems4':[
+        {'name': 'pizza', 'cost': 500},
+        {'name': 'fries', 'cost': 'free'},
+        {'name': 'momos', 'cost': 80},
+        {'name': 'chutney', 'cost': 'free'},
+        {'name': 'pasta', 'cost': 70}
+    ]}
+     
+     selected_item=None
+     for menu_item in items['menuitems4']:
+         if menu_item['name']==item:
+             selected_item=menu_item
+             break
+    
+     return render(request, 'restroo.html', {'item':selected_item})

@@ -19,5 +19,5 @@ urlpatterns =[
     path('menus/',views.menus),
     path('menu1/',views.menu1),
     path('restro/', views.restro),
-
+    path('restroo/<str:item>/', views.restroo, name='restroo'),
 ]
