@@ -1,4 +1,4 @@
-<!Doctype html>
+<!-- <!Doctype html>
 <html lang="en">
   <head>
     <style>
@@ -14,4 +14,22 @@
   <body>
     <h1>HEllo nitesh</h1>
   </body>
-</html>
+</html> -->
+
+
+{% extends 'base.html' %}
+{% block title %}
+
+Home
+{% endblock %}
+
+{% block css %}
+h1{
+  color:blue;
+}
+{% endblock %}
+
+{% block content %}
+<h1>AboutPage</h1>
+<p>Welcome to about page</p>
+{% endblock %}

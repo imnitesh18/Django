@@ -20,4 +20,8 @@ urlpatterns =[
     path('menu1/',views.menu1),
     path('restro/', views.restro),
     path('restroo/<str:item>/', views.restroo, name='restroo'),
+    path('home/', views.home, name='home'),
+    path('about/', views.home, name='about'),
+    path('food/', views.food, name='food'),
+    path('food/<int:item_id>/', views.item_detail, name='item_detail'),
 ]

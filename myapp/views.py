@@ -95,3 +95,34 @@ def restroo(request,item):
              break
     
      return render(request, 'restroo.html', {'item':selected_item})
+
+
+def home(request):
+    return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def food(request):
+    items = [
+        {'name': 'Naan', 'cost': 500, 'details':'Details for Naan'},
+        {'name': 'Idli', 'cost': 'free', 'details':'Details for Idli'},
+        {'name': 'Punugulu', 'cost': 80, 'details':'Details for Punugulu'},
+        {'name': 'Paratha', 'cost': 'free', 'details':'Details for Paratha'},
+        {'name': 'Daal Rice', 'cost': 70, 'details':'Details for Daal Rice'}
+    ]
+    return render(request, 'food.html', {'items': items})
+
+def item_detail(request, item_id):
+     items = [
+        {'name': 'Naan', 'cost': 500, 'details':'Details for Naan'},
+        {'name': 'Idli', 'cost': 'free', 'details':'Details for Idli'},
+        {'name': 'Punugulu', 'cost': 80, 'details':'Details for Punugulu'},
+        {'name': 'Paratha', 'cost': 'free', 'details':'Details for Paratha'},
+        {'name': 'Daal Rice', 'cost': 70, 'details':'Details for Daal Rice'}
+    ]
+     
+     item = next((item for item in items if item['id'] == item_id), None)
+     return render(request, 'item_detail.html', {'item': item})
+
+

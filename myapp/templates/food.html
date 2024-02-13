@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+
+Home
+{% endblock %}
+
+{% block css %}
+h1{
+  color:green;
+}
+{% endblock %}
+
+{% block content %}
+
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-color: rgb(156, 32, 32);
+            border: 10lh;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .free {
+            background-color: lightgreen;
+        }
+    </style>
+<body>
+<h1>FoodPage</h1>
+<p>Welcome to HungryLand </p>
+ <table>
+        <tr>
+            <th>Name</th>
+            <th>Cost</th>
+        </tr>
+        {% for item in items %}
+            <td><a href="{% url food2 }">{{ item.name }}</a></td>
+            <td>{{ item.cost }}</td>
+            
+            </tr>
+        {% endfor %}
+    </table>
+  </body>
+{% endblock %}
