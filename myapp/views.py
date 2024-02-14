@@ -103,26 +103,57 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+# def food(request):
+#     items = [
+#         {'name': 'Naan', 'cost': 500, 'details':'Details for Naan'},
+#         {'name': 'Idli', 'cost': 'free', 'details':'Details for Idli'},
+#         {'name': 'Punugulu', 'cost': 80, 'details':'Details for Punugulu'},
+#         {'name': 'Paratha', 'cost': 'free', 'details':'Details for Paratha'},
+#         {'name': 'Daal Rice', 'cost': 70, 'details':'Details for Daal Rice'}
+#     ]
+#     return render(request, 'food.html', {'items':items})
+
+# def food2(request, item):
+#     list_items = [
+#         {'name': 'Naan', 'cost': 500, 'details': 'Details for Naan'},
+#         {'name': 'Idli', 'cost': 'free', 'details': 'Details for Idli'},
+#         {'name': 'Punugulu', 'cost': 80, 'details': 'Details for Punugulu'},
+#         {'name': 'Paratha', 'cost': 'free', 'details': 'Details for Paratha'},
+#         {'name': 'Daal Rice', 'cost': 70, 'details': 'Details for Daal Rice'}
+#     ]
+
+#     singleItem = {}
+#     for food in list_items:
+#         if food['name'] == item:
+#             singleItem = food
+#             break
+
+#     data = {
+#         "item": singleItem
+#     }
+#     return render(request, 'food2.html', data)
+
 def food(request):
     items = [
-        {'name': 'Naan', 'cost': 500, 'details':'Details for Naan'},
-        {'name': 'Idli', 'cost': 'free', 'details':'Details for Idli'},
-        {'name': 'Punugulu', 'cost': 80, 'details':'Details for Punugulu'},
-        {'name': 'Paratha', 'cost': 'free', 'details':'Details for Paratha'},
-        {'name': 'Daal Rice', 'cost': 70, 'details':'Details for Daal Rice'}
+        {'name': 'Burger', 'cost': '₹300', 'details': 'Burger details'},
+        {'name': 'Pizza', 'cost': '₹500', 'details': 'Pizza details'},
+        {'name': 'Fries', 'cost': '₹200', 'details': 'Fries details'},
+        {'name': 'Hot Dog', 'cost': '₹250', 'details': 'Hot Dog details'},
+        {'name': 'Chicken Wings', 'cost': '₹400', 'details': 'Chicken Wings details'}
     ]
-    return render(request, 'food.html', {'items': items})
+    context = {'items': items}
+    return render(request, 'food.html', context)
 
-def item_detail(request, item_id):
-     items = [
-        {'name': 'Naan', 'cost': 500, 'details':'Details for Naan'},
-        {'name': 'Idli', 'cost': 'free', 'details':'Details for Idli'},
-        {'name': 'Punugulu', 'cost': 80, 'details':'Details for Punugulu'},
-        {'name': 'Paratha', 'cost': 'free', 'details':'Details for Paratha'},
-        {'name': 'Daal Rice', 'cost': 70, 'details':'Details for Daal Rice'}
+def food_detail(request, item_name):
+    items = [
+        {'name': 'Burger', 'cost': '₹300', 'details': 'Burger details'},
+        {'name': 'Pizza', 'cost': '₹500', 'details': 'Pizza details'},
+        {'name': 'Fries', 'cost': '₹200', 'details': 'Fries details'},
+        {'name': 'Hot Dog', 'cost': '₹250', 'details': 'Hot Dog details'},
+        {'name': 'Chicken Wings', 'cost': '₹400', 'details': 'Chicken Wings details'}
     ]
-     
-     item = next((item for item in items if item['id'] == item_id), None)
-     return render(request, 'item_detail.html', {'item': item})
-
-
+    for item in items:
+        if item['name'] == item_name:
+            context = {'item': item}
+            return render(request, 'food_detail.html', context)
+    return render(request, '404.html')

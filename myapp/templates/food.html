@@ -1,53 +1,56 @@
+<!-- templates/food.html -->
+
 {% extends 'base.html' %}
-{% block title %}
 
-Home
-{% endblock %}
-
-{% block css %}
-h1{
-  color:green;
-}
-{% endblock %}
+{% block title %}Food - My Django Project{% endblock %}
 
 {% block content %}
-
 <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border-color: rgb(156, 32, 32);
-            border: 10lh;
-        }
+  /* CSS styles for the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #333;
+  }
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+  th, td {
+    padding: 10px;
+    border: 1px solid #333;
+    text-align: left;
+  }
 
-        tr:hover {
-            background-color: #f5f5f5;
-        }
+  th {
+    background-color: #333;
+    color: white;
+  }
 
-        .free {
-            background-color: lightgreen;
-        }
-    </style>
-<body>
-<h1>FoodPage</h1>
-<p>Welcome to HungryLand </p>
- <table>
-        <tr>
-            <th>Name</th>
-            <th>Cost</th>
-        </tr>
-        {% for item in items %}
-            <td><a href="{% url food2 }">{{ item.name }}</a></td>
-            <td>{{ item.cost }}</td>
-            
-            </tr>
-        {% endfor %}
-    </table>
-  </body>
+  
+
+  /* CSS styles for the details */
+  .details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: #f9f9f9;
+    display: none;
+  }
+
+  h1{
+    color: greenyellow;
+  }
+</style>
+
+<h1>Welcome to the HungryLand</h1>
+<table>
+  <tr>
+    <th>Food Item</th>
+    <th>Cost (in Rupees)</th>
+  </tr>
+  {% for item in items %}
+  <tr>
+    <td><a href="{% url 'food_detail' item.name %}">{{ item.name }}</a></td>
+    <td>{{ item.cost }}</td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}
