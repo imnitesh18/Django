@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
 def hello(request):
     return HttpResponse("hello")
 def home(request):
@@ -157,3 +159,87 @@ def food_detail(request, item_name):
             context = {'item': item}
             return render(request, 'food_detail.html', context)
     return render(request, '404.html')
+
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
+def simpleform(request):
+  if request.method == 'POST':
+      textbox1=request.POST.get('textbox1')
+      textbox2=request.POST.get('textbox2')
+      return HttpResponse(f"The values are {textbox1} and {textbox2}")
+  else:
+      form_html="""
+      <form method="POST">
+      <label for="textbox1">Text Box 1:</label><br>
+      <input type="text" id="textbox1" name="textbox1"><br>
+      <label for="textbox2">Text Box 2:</label><br>
+      <input type="text" id="textbox2" name="textbox2"><br>
+      <input type="submit" value="Submit">
+      </form>
+      """
+
+      return HttpResponse(form_html)
+  
+
+from django.middleware.csrf import get_token
+def simpleform1(request):
+  csrf_token=get_token(request)
+  if request.method == 'POST':
+      textbox1=request.POST.get('textbox1')
+      textbox2=request.POST.get('textbox2')
+      return HttpResponse(f"The values are {textbox1} and {textbox2}")
+  else:
+      form_html=f"""
+      <form method="POST">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+      <label for="textbox1">Text Box 1:</label><br>
+      <input type="text" id="textbox1" name="textbox1"><br>
+      <label for="textbox2">Text Box 2:</label><br>
+      <input type="text" id="textbox2" name="textbox2"><br>
+      <input type="submit" value="Submit">
+      </form>
+      """
+
+      return HttpResponse(form_html)
+
+
+# two text box csrf addd two number with form submit button addition result
+  
+
+def simpleform3(request):
+    csrf_token=get_token(request)
+    if request.method == 'POST':
+        textbox1 = int(request.POST.get('textbox1', 0)) 
+        textbox2 = int(request.POST.get('textbox2', 0)) 
+        result = textbox1 + textbox2
+        return HttpResponse(f"The addition result is: {result}")
+    else:
+        form_html = f"""
+            <form method="POST">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+                <label for="textbox1">Number 1:</label><br>
+                <input type="number" id="textbox1" name="textbox1" required><br>
+                <label for="textbox2">Number 2:</label><br>
+                <input type="number" id="textbox2" name="textbox2" required><br>
+                <input type="submit" value="Add">
+            </form>
+        """
+        return HttpResponse(form_html)
+    
+
+from django.views import View
+
+class MyView(View):
+    def get(self,request):
+        return render(request,'form.html')
+    
+
+    def post(self,request):
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+
+        if name and email and password:
+            return HttpResponse('Form submitted Successfully!')
+        
+        return render(request,'form.html')

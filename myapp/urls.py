@@ -1,5 +1,6 @@
 from django.urls import path,re_path
 from . import views
+from myapp.views import MyView
 
 urlpatterns =[
     path('hello/',views.hello),
@@ -25,4 +26,9 @@ urlpatterns =[
     path('food/', views.food, name='food'),
     # path('food2/<int:item_id>/', views.food2, name='food2'),
     path('food_detail/<str:item_name>/', views.food_detail, name='food_detail'),
+    path('simpleform', views.simpleform, name='simpleform'),
+    path('simpleform1', views.simpleform1, name='simpleform1'),
+    path('simpleform3', views.simpleform3, name='simpleform3'),
+    path('getform/',MyView.as_view(), name='getform'),
+    path('postform/',MyView.as_view(), name='postform')
 ]
