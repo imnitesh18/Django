@@ -30,5 +30,7 @@ urlpatterns =[
     path('simpleform1', views.simpleform1, name='simpleform1'),
     path('simpleform3', views.simpleform3, name='simpleform3'),
     path('getform/',MyView.as_view(), name='getform'),
-    path('postform/',MyView.as_view(), name='postform')
+    path('postform/',MyView.as_view(), name='postform'),
+    # path('css/',views.css,name='css')
+    path('validation/',views.validation,name='validation')
 ]

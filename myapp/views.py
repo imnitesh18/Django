@@ -243,3 +243,48 @@ class MyView(View):
             return HttpResponse('Form submitted Successfully!')
         
         return render(request,'form.html')
+    
+
+    def css(request):
+        return render(request,'testcss.html')
+    
+
+
+def validation(request):
+    name=''
+    email=''
+    password=''
+    name_error=''
+    email_error=''
+    password_error=''
+
+
+    if(request.method=='POST'):
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+
+        if not name:
+            name_error="NAme is Mandatory"
+
+        if not email:
+            email_error="email is Mandatory"
+
+        if not password:
+            password_error="password is Mandatory"   
+
+        if name_error or email_error or password_error:
+            return render(request,'validation.html',{
+                'name':name,
+                'email':email,
+                'password':password,
+                'name_error':name_error,
+                'email_error':email_error,
+                'password_error':password_error
+            })   
+
+    return render(request,'validation.html',{
+        'name':name,
+        'email':email,
+        'password':password,
+    })          
