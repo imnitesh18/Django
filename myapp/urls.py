@@ -32,5 +32,6 @@ urlpatterns =[
     path('getform/',MyView.as_view(), name='getform'),
     path('postform/',MyView.as_view(), name='postform'),
     # path('css/',views.css,name='css')
-    path('validation/',views.validation,name='validation')
+    path('validation/',views.validation,name='validation'),
+    path('val_django_form/',views.val_django_form),
 ]

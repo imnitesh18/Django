@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from .forms import InputForm1
 
 def hello(request):
     return HttpResponse("hello")
@@ -287,4 +288,21 @@ def validation(request):
         'name':name,
         'email':email,
         'password':password,
-    })          
+    }) 
+
+from django.shortcuts import render
+from .forms import InputForm1
+
+def val_django_form(request):
+    submitted_details = None
+    if request.method == 'POST':
+        form = InputForm1(request.POST)
+        if form.is_valid():
+            submitted_details = form.cleaned_data
+        else:
+            return render(request, 'val_django_form.html', {'form': form, 'submitted_details': submitted_details})
+        
+    else:
+        form = InputForm1()
+    
+    return render(request, 'val_django_form.html', {'form': form, 'submitted_details': submitted_details})
