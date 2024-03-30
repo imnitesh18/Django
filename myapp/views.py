@@ -322,13 +322,33 @@ def sign(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            email = form.cleaned_data['email']  # Fix typo in 'email'
+            email = form.cleaned_data['email'] 
             password = form.cleaned_data['password']
             s = SignUp.objects.create(username=username, email=email, password=password)
             s.save()
             account_created = True
     else:
         form = SignupForm()
+        
+    return render(request, 'signup.html', {'form': form, 'account_created': account_created})
+
+from .forms import CustomersForm
+from .models import Customers
+
+def sign1(request):
+    account_created = False
+    
+    if request.method == 'POST':
+        form = CustomersForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email'] 
+            password = form.cleaned_data['password']
+            s = Customers.objects.create(username=username, email=email, password=password)
+            s.save()
+            account_created = True
+    else:
+        form = CustomersForm()
         
     return render(request, 'signup.html', {'form': form, 'account_created': account_created})
 
