@@ -34,4 +34,5 @@ urlpatterns =[
     # path('css/',views.css,name='css')
     path('validation/',views.validation,name='validation'),
     path('val_django_form/',views.val_django_form),
+    path('sign/',views.sign),
 ]

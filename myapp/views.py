@@ -306,3 +306,29 @@ def val_django_form(request):
         form = InputForm1()
     
     return render(request, 'val_django_form.html', {'form': form, 'submitted_details': submitted_details})
+
+
+from .forms import SignupForm
+from .models import SignUp
+
+from django.shortcuts import render
+from .forms import SignupForm
+from .models import SignUp
+
+def sign(request):
+    account_created = False
+    
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']  # Fix typo in 'email'
+            password = form.cleaned_data['password']
+            s = SignUp.objects.create(username=username, email=email, password=password)
+            s.save()
+            account_created = True
+    else:
+        form = SignupForm()
+        
+    return render(request, 'signup.html', {'form': form, 'account_created': account_created})
+
