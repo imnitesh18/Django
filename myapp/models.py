@@ -23,5 +23,29 @@ class Customers(models.Model):
     def __str__(self):
         return self.username
   
+class Faculty(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.TextField(max_length=50)
+    salary = models.IntegerField()
+    def _str_(self):
+        return self.name
+
+class Section(models.Model):
+    section_name= models.CharField(max_length=50)
+    no_of_students=models.IntegerField()
+    faculty=models.ForeignKey(Faculty, on_delete=models.CASCADE) 
+    def _str_(self):
+        return self.section_name
+
+class Blogpost(models.Model):
+  post_id=models.AutoField(primary_key=True)
+  title=models.CharField(max_length=30)
+  post=models.TextField()
+  thumbnail=models.ImageField(upload_to='images/')
+  def __str__(self):
+     return self.title
+
+
+     
 
 

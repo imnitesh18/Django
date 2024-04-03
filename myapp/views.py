@@ -352,3 +352,20 @@ def sign1(request):
         
     return render(request, 'signup.html', {'form': form, 'account_created': account_created})
 
+       
+
+def get_cookie(request):
+    cookie_value=request.COOKIES.get('name')
+    if cookie_value:
+     return HttpResponse(f"Cookie value:{cookie_value}")
+
+    else:
+        return HttpResponse("cookie not found!") 
+
+
+from .models import Blogpost
+
+def blogpost(request):
+    post=Blogpost.objects.filter()[2]
+    return render(request, 'blogpost.html',{'post':post})
+
