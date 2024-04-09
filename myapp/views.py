@@ -5,11 +5,11 @@ from .forms import InputForm1
 
 def hello(request):
     return HttpResponse("hello")
-def home(request):
-    return HttpResponse("""<body style='background-color:pink'>
-        <h1 style='color:red'> heading</
-        h1> </body>
-        <p> para </p>""")
+# def home(request):
+#     return HttpResponse("""<body style='background-color:pink'>
+#         <h1 style='color:red'> heading</
+#         h1> </body>
+#         <p> para </p>""")
 def menuitem(request):
     item ="pizza"
     return HttpResponse(f"The item name is {item}")
@@ -55,8 +55,8 @@ def restuarant(request,category,subcategory):
     else:
         return HttpResponse(f'The category is {category} and the subcategory is {subcategory}')
     
-def about(request):
-    return render(request,'about.html')    
+# def about(request):
+#     return render(request,'about.html')    
 
 def menus(request):
     items={'type':'India'}
@@ -246,8 +246,8 @@ class MyView(View):
         return render(request,'form.html')
     
 
-    def css(request):
-        return render(request,'testcss.html')
+    # def css(request):
+    #     return render(request,'testcss.html')
     
 
 
@@ -368,4 +368,26 @@ from .models import Blogpost
 def blogpost(request):
     post=Blogpost.objects.filter()[2]
     return render(request, 'blogpost.html',{'post':post})
+
+
+# views.py
+
+from django.shortcuts import render, redirect
+from .forms import CookieForm
+from .models import Cookie
+
+def set_cookie(request):
+    if request.method == 'POST':
+        form = CookieForm(request.POST)
+        if form.is_valid():
+            cookie = form.save()
+            response = redirect('success_page')
+            response.set_cookie(cookie.name, cookie.value)
+            return response
+    else:
+        form = CookieForm()
+    return render(request, 'set_cookie.html', {'form': form})
+
+def success_page(request):
+    return render(request, 'success_page.html')
 

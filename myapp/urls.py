@@ -36,5 +36,7 @@ urlpatterns =[
     path('val_django_form/',views.val_django_form),
     path('sign/',views.sign),
     path('sign1/',views.sign1),
-    path('blogpost/',views.blogpost)
+    path('blogpost/',views.blogpost),
+    path('set_cookie/',views.set_cookie, name='set_cookie'),
+    path('success/',views.success_page, name='success_page'),
 ]

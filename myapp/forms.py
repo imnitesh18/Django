@@ -5,7 +5,7 @@ class InputForm1(forms.Form):
   email=forms.EmailField()
   password=forms.CharField()
 
-  from django import forms
+from django import forms
 from .models import SignUp
 
 class SignupForm(forms.Form):
@@ -18,4 +18,15 @@ class CustomersForm(forms.ModelForm):
     class Meta:
         model = Customers
         fields = ['username', 'email', 'password'] 
+
+
+
+from .models import Cookie
+
+class CookieForm(forms.ModelForm):
+    class Meta:
+        model = Cookie
+        fields = ['name', 'value']
+
+
 
